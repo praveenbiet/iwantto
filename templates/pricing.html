@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center mb-8">Choose Your Plan</h1>
+    
+    <!-- Payment Method Selection -->
+    <div class="max-w-5xl mx-auto mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold mb-4">Select Payment Method</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button class="payment-method-btn active" data-method="all">
+                    <img src="{{ url_for('static', filename='images/all-payment.png') }}" alt="All Payment Methods" class="h-8 mb-2">
+                    <span>All Methods</span>
+                </button>
+                <button class="payment-method-btn" data-method="upi">
+                    <img src="{{ url_for('static', filename='images/upi.png') }}" alt="UPI" class="h-8 mb-2">
+                    <span>UPI</span>
+                </button>
+                <button class="payment-method-btn" data-method="card">
+                    <img src="{{ url_for('static', filename='images/card.png') }}" alt="Card" class="h-8 mb-2">
+                    <span>Card</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {% for price in prices %}
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-4">{{ price.nickname }}</h2>
+                <p class="text-4xl font-bold mb-4">
+                    ₹{{ "%.2f"|format(price.unit_amount/100) }}
+                    <span class="text-lg font-normal text-gray-600">/{{ price.recurring.interval }}</span>
+                </p>
+                <ul class="space-y-3 mb-6">
+                    {% for feature in price.features %}
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        {{ feature }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <form action="{{ url_for('create_checkout') }}" method="POST" class="payment-form">
+                    <input type="hidden" name="price_id" value="{{ price.id }}">
+                    <input type="hidden" name="payment_method" value="all">
+                    <button type="submit" 
+                            class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
+                        Subscribe Now
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Indian-Specific Benefits -->
+    <div class="mt-12 text-center">
+        <h2 class="text-2xl font-bold mb-4">Why Choose Our Platform?</h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div class="p-6">
+                <div class="text-blue-600 text-4xl mb-4">
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Indian Payment Options</h3>
+                <p class="text-gray-600">Pay using UPI, Net Banking, or Credit/Debit cards with secure Indian payment gateways.</p>
+            </div>
+            <div class="p-6">
+                <div class="text-blue-600 text-4xl mb-4">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">GST Invoice</h3>
+                <p class="text-gray-600">Get GST-compliant invoices for all your payments.</p>
+            </div>
+            <div class="p-6">
+                <div class="text-blue-600 text-4xl mb-4">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Indian Support</h3>
+                <p class="text-gray-600">24/7 support in Hindi and English from our Indian team.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="mt-12 text-center">
+        <h2 class="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+        <div class="max-w-3xl mx-auto space-y-4">
+            <div class="bg-white rounded-lg p-6 shadow">
+                <h3 class="text-xl font-bold mb-2">What payment methods do you accept?</h3>
+                <p class="text-gray-600">We accept UPI (Google Pay, PhonePe, Paytm), Net Banking, and all major credit/debit cards.</p>
+            </div>
+            <div class="bg-white rounded-lg p-6 shadow">
+                <h3 class="text-xl font-bold mb-2">Do you provide GST invoice?</h3>
+                <p class="text-gray-600">Yes, we provide GST-compliant invoices for all payments. You can download it from your dashboard.</p>
+            </div>
+            <div class="bg-white rounded-lg p-6 shadow">
+                <h3 class="text-xl font-bold mb-2">Is there a free trial?</h3>
+                <p class="text-gray-600">Yes, we offer a 7-day free trial for all our subscription plans.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Payment Method Selection Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentButtons = document.querySelectorAll('.payment-method-btn');
+    const paymentForms = document.querySelectorAll('.payment-form');
+    
+    paymentButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Update active button
+            paymentButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update payment method in all forms
+            const method = this.dataset.method;
+            paymentForms.forEach(form => {
+                form.querySelector('input[name="payment_method"]').value = method;
+            });
+        });
+    });
+});
+</script>
+
+<style>
+.payment-method-btn {
+    @apply flex flex-col items-center justify-center p-4 border rounded-lg hover:bg-gray-50 transition-colors;
+}
+
+.payment-method-btn.active {
+    @apply border-blue-500 bg-blue-50;
+}
+
+.payment-method-btn img {
+    @apply h-8 mb-2;
+}
+</style>
+{% endblock %} 

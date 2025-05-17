@@ -1,0 +1,369 @@
+/* Custom styles for LearnJS */
+
+/* Code editor styling */
+#code-editor {
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    tab-size: 4;
+    white-space: pre;
+}
+
+/* Progress bar animation */
+.progress-bar {
+    transition: width 0.3s ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Custom focus styles */
+.focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+/* Custom transitions */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Custom button styles */
+.btn-primary {
+    @apply px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all;
+}
+
+.btn-secondary {
+    @apply px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all;
+}
+
+/* Custom card styles */
+.card {
+    @apply bg-white rounded-lg shadow-md p-6 transition-all hover:shadow-lg;
+}
+
+/* Custom form styles */
+.form-input {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+}
+
+.form-label {
+    @apply block text-sm font-medium text-gray-700;
+}
+
+/* Custom badge styles */
+.badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-blue {
+    @apply bg-blue-100 text-blue-800;
+}
+
+.badge-green {
+    @apply bg-green-100 text-green-800;
+}
+
+/* Custom alert styles */
+.alert {
+    @apply p-4 rounded-md;
+}
+
+.alert-success {
+    @apply bg-green-50 text-green-800;
+}
+
+.alert-error {
+    @apply bg-red-50 text-red-800;
+}
+
+.alert-warning {
+    @apply bg-yellow-50 text-yellow-800;
+}
+
+/* Custom table styles */
+.table {
+    @apply min-w-full divide-y divide-gray-200;
+}
+
+.table th {
+    @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.table td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-500;
+}
+
+/* Custom navigation styles */
+.nav-link {
+    @apply text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium;
+}
+
+.nav-link-active {
+    @apply bg-gray-100 text-gray-900 px-3 py-2 rounded-md text-sm font-medium;
+}
+
+/* Custom footer styles */
+.footer {
+    @apply bg-white border-t border-gray-200;
+}
+
+.footer-link {
+    @apply text-gray-500 hover:text-gray-900;
+}
+
+/* Custom hero section styles */
+.hero {
+    @apply relative bg-white overflow-hidden;
+}
+
+.hero-content {
+    @apply max-w-7xl mx-auto;
+}
+
+/* Custom feature section styles */
+.feature {
+    @apply relative;
+}
+
+.feature-icon {
+    @apply absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white;
+}
+
+/* Custom pricing section styles */
+.pricing-card {
+    @apply border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200;
+}
+
+.pricing-header {
+    @apply p-6;
+}
+
+.pricing-features {
+    @apply pt-6 pb-8 px-6;
+}
+
+/* Custom course card styles */
+.course-card {
+    @apply bg-white overflow-hidden shadow rounded-lg;
+}
+
+.course-content {
+    @apply p-6;
+}
+
+.course-progress {
+    @apply relative pt-1;
+}
+
+/* Custom activity feed styles */
+.activity-item {
+    @apply relative pb-8;
+}
+
+.activity-icon {
+    @apply h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white;
+}
+
+/* Custom code block styles */
+.code-block {
+    @apply bg-gray-900 rounded-lg p-4;
+}
+
+.code-block pre {
+    @apply text-gray-100 overflow-x-auto;
+}
+
+/* Custom tooltip styles */
+.tooltip {
+    @apply relative inline-block;
+}
+
+.tooltip-text {
+    @apply invisible absolute z-10 p-2 text-sm text-white bg-gray-900 rounded-md opacity-0 transition-opacity duration-300;
+}
+
+.tooltip:hover .tooltip-text {
+    @apply visible opacity-100;
+}
+
+/* Custom modal styles */
+.modal {
+    @apply fixed z-10 inset-0 overflow-y-auto;
+}
+
+.modal-content {
+    @apply relative bg-white rounded-lg mx-auto p-6 max-w-lg;
+}
+
+.modal-backdrop {
+    @apply fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity;
+}
+
+/* Custom loading spinner */
+.spinner {
+    @apply animate-spin h-5 w-5 text-blue-600;
+}
+
+/* Custom notification styles */
+.notification {
+    @apply fixed bottom-4 right-4 p-4 rounded-lg shadow-lg;
+}
+
+.notification-success {
+    @apply bg-green-500 text-white;
+}
+
+.notification-error {
+    @apply bg-red-500 text-white;
+}
+
+/* Custom dropdown styles */
+.dropdown {
+    @apply relative inline-block;
+}
+
+.dropdown-content {
+    @apply hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5;
+}
+
+.dropdown:hover .dropdown-content {
+    @apply block;
+}
+
+/* Custom tab styles */
+.tab {
+    @apply px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700;
+}
+
+.tab-active {
+    @apply border-b-2 border-blue-500 text-blue-600;
+}
+
+/* Custom pagination styles */
+.pagination {
+    @apply flex justify-center space-x-2;
+}
+
+.page-link {
+    @apply px-3 py-1 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50;
+}
+
+.page-active {
+    @apply bg-blue-600 text-white;
+}
+
+/* Custom search input styles */
+.search-input {
+    @apply block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+}
+
+/* Custom sidebar styles */
+.sidebar {
+    @apply fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200;
+}
+
+.sidebar-link {
+    @apply flex items-center px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900;
+}
+
+.sidebar-link-active {
+    @apply bg-gray-100 text-gray-900;
+}
+
+/* Custom breadcrumb styles */
+.breadcrumb {
+    @apply flex space-x-2 text-sm text-gray-500;
+}
+
+.breadcrumb-item {
+    @apply hover:text-gray-700;
+}
+
+.breadcrumb-separator {
+    @apply text-gray-400;
+}
+
+/* Custom avatar styles */
+.avatar {
+    @apply h-10 w-10 rounded-full;
+}
+
+.avatar-sm {
+    @apply h-8 w-8;
+}
+
+.avatar-lg {
+    @apply h-12 w-12;
+}
+
+/* Custom badge notification styles */
+.badge-notification {
+    @apply absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full;
+}
+
+/* Custom progress circle styles */
+.progress-circle {
+    @apply relative inline-flex items-center justify-center;
+}
+
+.progress-circle-text {
+    @apply absolute text-sm font-medium text-gray-900;
+}
+
+/* Custom toggle switch styles */
+.toggle-switch {
+    @apply relative inline-flex items-center h-6 rounded-full w-11;
+}
+
+.toggle-switch-checked {
+    @apply bg-blue-600;
+}
+
+.toggle-switch-unchecked {
+    @apply bg-gray-200;
+}
+
+.toggle-switch-handle {
+    @apply inline-block w-4 h-4 transform bg-white rounded-full transition-transform duration-200 ease-in-out;
+}
+
+.toggle-switch-handle-checked {
+    @apply translate-x-6;
+}
+
+.toggle-switch-handle-unchecked {
+    @apply translate-x-1;
+} 
